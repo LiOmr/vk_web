@@ -1,0 +1,42 @@
+{% load static %}
+
+<answer class="card mb-3 w-100 justify-content-between">
+    <div class="row g-0">
+        <div class="p-2" style="width: 110px;">
+            <div class="border mb-3 rounded" style="height: 100px; width: 100px;">
+                <img
+                    src="{{ answer.author.profile.avatar.url }}"
+                    class="rounded"
+                    style="object-fit: cover; width: 100%; height: 100%;"
+                    alt="..."
+                />
+            </div>
+            <div class ="item-with-buttons">
+                <div class="d-flex" style="width: 100px;">
+                    <label class='rating' data-component="answer" data-component-id="{{ answer.id }}" style="text-align: center;">{{ answer.rating }}</label>
+                </div>
+                <div class="d-flex justify-content-between" style="width: 100px;">
+                    <button name="Like" type="button" class="Like bi bi-arrow-up-short btn btn-sm btn-light fs-5 p-0" data-action="Like">
+                        <img src="{% static "img/like.svg" %}" width="25" height="25" alt="arrow up" />
+                    </button>
+                    <button name="Dislike" type="button" class="Dislike bi bi-arrow-down-short btn btn-sm btn-light fs-5 p-0" data-action="Dislike">
+                        <img src="{% static "img/dislike.svg" %}" width="25" height="25" alt="arrow down" />
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="col">
+            <div class="card-body">
+                <p class="card-text">
+                    {{ answer.content }}
+                </p>
+                <div class="form-check">
+                    <input class="form-check-input answer-checkbox" type="checkbox" data-answer-id="{{ answer.id }}" value="" id="answer-{{ answer.id }}" {% if request.user != answer.question.author %} disabled {% endif %} {% if answer.is_correct %} checked {% endif %}>
+                <label for="answer-{{ answer.id }}">Correct!</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</answer>

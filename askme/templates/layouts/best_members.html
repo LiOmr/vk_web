@@ -1,0 +1,9 @@
+
+<h3>Best Members</h3>
+<div class="best-members">
+    {% for member in members %}
+    <div class="member">
+        <a href="#" class="member">{{ member.username }}</a>
+    </div>
+    {% endfor %}
+</div>

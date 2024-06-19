@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="col-8">
+        <div class="d-flex gap-3 align-items-center">
+            <h1 class="title">New Question</h1>
+        </div>
+        <form class="container-fluid" action="" method="post">
+            <div style="display: grid; grid-template-columns: 100px 1fr;">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                    <div class="error-message" style="color: red; grid-column: 2;">{{ form.non_field_errors }}</div>
+                {% endif %}
+                <label class="form-label mt-3" for="title">Title: </label>
+                <div class="was-validated">
+                    <textarea maxlength="40" class="form-control w-100 mt-3" style="height: 56px; resize: none;" name="title" placeholder="Write your title" id="title" required></textarea>
+                    <div class="invalid-feedback">
+                        Oops... Please enter your title.
+                    </div>
+                </div>
+
+                <label class="mt-3" for="content">Text: </label>
+                <div class="was-validated">
+                    <textarea maxlength="500" class="form-control w-100 mt-3" style="height: 200px; resize: none;" name="content" placeholder="Write your text" id="content" required></textarea>
+                    <div class="invalid-feedback">
+                        Oops... Please enter your text.
+                    </div>
+                </div>
+
+                <label class="mt-3" for="tags">Tags: </label>
+                <div class="was-validated">
+                    <textarea maxlength="50" class="form-control w-100 mt-3" style="height: 56px; resize: none;" name="tags" placeholder="Write your tags" id="tags" required></textarea>
+                    <div class="invalid-feedback">
+                        Oops... Please enter your tags.
+                    </div>
+                </div>
+
+                <button class="btn btn-outline-success mt-3 mb-3" style="grid-column: 2;" type="submit">ASK!</button>
+
+            </div>
+        </form>
+
+    </div>
+{% endblock %}
+        

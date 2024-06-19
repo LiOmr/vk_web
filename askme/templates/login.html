@@ -1,0 +1,36 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="d-flex gap-3 align-items-center">
+            <h1 class="title">Login</h1>
+    </div>
+    
+    <div class="col-8">
+        <form class="container-fluid" action="" method="post">
+            {% csrf_token %}
+            <div style="display: grid; grid-template-columns: 100px 1fr;">
+                {% if form.non_field_errors %}
+                    <div class="error-message" style="color: red; grid-column: 2;">{{ form.non_field_errors }}</div>
+                {% endif %}
+                <label class="form-label mt-3" for="username">Login: </label>
+                <div class="was-validated">
+                    <input type="text" maxlength="20" class="form-control w-100 mt-3" style="height: 40px; resize: none;" name="username" placeholder="Write your login" id="username" {% if form.username.value %}value="{{ form.username.value }}"{% endif %} required>
+                    <div class="invalid-feedback">
+                        Oops... Please enter your login.
+                    </div>
+                </div>
+                <label class="form-label mt-3" for="password">Password: </label>
+                <div class="was-validated">
+                    <input type="password" maxlength="20" class="form-control w-100 mt-3" style="height: 40px; resize: none;" name="password" placeholder="Write your password" id="password" {% if form.password.value %}value="{{ form.password.value }}"{% endif %} required>
+                    <div class="invalid-feedback">
+                        Oops... Please enter your password.
+                    </div>
+                </div>
+                <button class="btn btn-outline-success mt-3 mb-3" style="grid-column: 2;" type="submit">LOG IN!</button>
+                <a href="{% url 'signup' %}" style="grid-column: 2;">create new account</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+            

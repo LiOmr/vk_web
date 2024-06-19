@@ -1,0 +1,8 @@
+<h3>Popular Tags</h3>
+    <div class="row">
+        <div class="col">
+            {% for tag in popular_tags|slice:":10" %}
+                    <a class="badge text-bg-success" href="{% url 'tag' tag.name %}">{{ tag.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
